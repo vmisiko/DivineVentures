@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html"%}
+{%  load crispy_forms_tags %}
+{% load  staticfiles %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  
+  <style type="text/css"> -->
+    html,
+    body,
+    main,
+    .load_progress {
+      display: none;
+      text-align: center;
+      
+    }
+  </style>
+  
+  
+</head>
+  
+  
+<body class="grey lighten-3">
+
+{% block content %}
+  <!-- Navbar -->
+
+  <!--Main layout-->
+  <main >
+    <div id= "id_top" class="container wow fadeIn pt-5">
+
+      <!-- Heading -->
+      <h1 class="my-5 h2 text-center">Pay with Mpesa</h1>
+      
+
+      
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div  class="col-md-8 mb-4">
+          <h2 class ="green-text "> Lipa na M<a style = 'color:red;'><i class="fas fa-mobile-alt"></i></a>pesa</h2>
+
+          <!--Card-->
+          <div class="card mb-3">
+
+            <h4 class="card-title blue-text col-md-12 text-center pt-4"><strong>Payment Option 0ne</strong></h4>
+
+            <div style = "display: none;  margin:auto" class = "load_progress card-body text-center">
+                <h3 class="mr-3"> Please Wait .... </h3>
+               
+                <hr class="my-2">
+                <img src = "{% static 'img/preloader.gif' %}"  style="width: 100px; height: 70px;" ></img>
+
+                <hr class="my-2">
+                <p> Enter Your PIN once Prompted !! </p>
+
+                <hr class="my-2">
+
+            </div>
+            <!-- stk -mpesa code  -->
+            <form  method= "POST"  id = "post-code" class=" mpesa_code card-body text-center">
+                {% csrf_token %}
+
+                <div style = "display: none;  margin:auto" class = " md-form mpesa_code text-center">
+                    <p class = " blue-text"> succesful stk-push!! </p>
+
+                  <h3 class="mr-3 "> Enter your Mpesa Transaction Code </h3>
+              
+        
+
+                  <input type="text" id="id_mpesa_code" class="form-control" placeholder=" Mpesa code ">
+
+                  <hr class="mb-4">
+                <button  class= " btn btn-info "  type = "submit">submit</button>
+                
+                <hr class="mb-4">
+                <P>Not yet paid? <a href="" id="id_back" >Back</a></P>
+              </div>
+            </form>
+           <!-- stk -- mpesa code  -->
+            
+           <!-- paid  -->
+           <div style = "display: none;  margin:auto" class = "payment_successful">
+
+              <hr class="mb-5">
+              <div class = "row  wOW fadeIn">
+                  <div class = " col-4 text-center  ">
+                      <i class="fas fa-check-circle fa-5x" style="color:rgba(55, 0, 255, 0.911);" ></i>
+                  </div>
+                  <div class = " col-8 text-center  ">
+                      <h5 class="mr-3 pt-4" style= "color:rgba(55, 0, 255, 0.911);">Payment Succesful </h5>      
+                  </div>
+
+              </div>
+              <div class= "text-center">
+                  <P class = "pt-3 px-3"> Thank you for working with Divine Ventures. A world of Opportunities is 
+                    awaiting you {{ request.user }}. You can now start earning from your referrals infinetly without 
+                    paying a single dime, from now hence fourth.
+                  </P>
+                  <p>
+                    regards, 
+                  </p>
+                  <p>
+                    DivineVentures!  
+                  </P>
+
+                      <hr class="mb-4"> 
+                    
+                  
+              </div>
+               
+               <hr class="mb-4">
+
+          </div>
+           <!-- paid   -->
+
+           <!--Card content-->
+          <div class="load-hide card-body text-center">
+                
+                <!-- Text -->
+            <p class="card-text">Enter your M-Pesa phone number below and Click  <strong>Pay now </strong> then check your 
+              phone handset for an instant payment prompt from safaricom M-pesa.
+              </p>
+           
+            <form method= "POST"  id = "post-form" class="card-body">
+                {% csrf_token %}
+
+                <p class = "card-text"> Enter a registered Phone number in the right format  </p>
+                <p class = "card-text red-text">  format e.g -> 2547xxxxxxxx </p>
+               
+  
+                <!--address-->
+                <div class="col-12  md-form mb-5">
+                    <label for="id_phone_number" class="pb-5"> * Phone number </label>
+                  <!-- <input type="text" id="address" class="form-control" placeholder=" "> -->
+  
+                  {{ form.phone_number }}
+
+                  
+                </div>
+
+                <hr class="mb-4">
+                <button  class= " btn btn-info "  type = "submit">Pay Now</button>
+                <P>Already paid? <a href="#" class="confirm_code"  onclick="return false;" >Enter your mpesa code </a></P>
+              </form>
+                
+            </div>
+          </div>
+
+           <!--Card-->
+           <div class="load-hide card">
+
+              <h4 class="card-title blue-text text-center pt-4"><strong>payment Option Two</strong></h4>
+  
+              <div class="card-body text-center">
+                  <!--Card content-->
+                  <!-- Text -->
+              <p class="card-text">Send  <strong>KSH:{{ order.get_total }} </strong> to paybill number <strong>5672543 </strong> and Account number
+                 <strong>0721649416</strong>. Once you recieve the confirmation message on your phone, click refresh button to view your status.
+                </p>
+
+                <div class="view view-cascade overlay">
+                  
+                  <h2><a style= "color:rgba(55, 0, 255, 0.911);">
+                      <i class="fas fa-sync-alt">Refresh</i>
+                  </a></h2>
+                </div>
+                  
+              <form method= "POST" class="card-body"
+                  <p class = "card-text"> If the invoice status still indicates UNPAID, enter below your confirmation code  </p>
+                 
+                  {% csrf_token %}
+    
+                  <!--address-->
+                  <div class="col-12  md-form mb-5">
+                      <label for="address" class="pb-5"> * confimation code </label>
+                    <!-- <input type="text" id="address" class="form-control" placeholder=" "> -->
+    
+                    {{ form2.mpesa_code}}
+  
+                    
+                  </div>
+  
+                  <hr class="mb-4">
+                  <button class= " btn btn-info " type="submit">Pay Now</button>
+    
+                </form>
+                  
+              </div>
+            </div>
+
+        </div>
+          
+          <!--/.Card-->
+      <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{ order.items.count }}</span>
+          </h4>
+
+          <!-- Cart -->
+          <ul class="list-group mb-3 z-depth-1">
+            {% for order_item in order.items.all %}
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">{{ order_item.item.title }}</h6>
+                <small class="text-muted">{{ order_item.item.description }} </small>
+              </div>
+              <span class="text-muted">Ksh: {{ order_item.get_final_price }} </span>
+            </li>
+            {% endfor %}
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Promo code</h6>
+                <small>EXAMPLECODE</small>
+              </div>
+              <span class="text-success">-$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>{{ order.get_total }}</strong>
+            </li>
+          </ul>
+          <!-- Cart -->
+
+          <!-- Promo code -->
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
+              </div>
+            </div>
+          </form>
+          <!-- Promo code -->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+  <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script  src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  <!-- Initializations -->
+  <!-- <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script> -->
+<script>
+  $('#post-form').on('submit', function(event){
+    event.preventDefault();
+    $(".load_progress").show();
+    $(".load-hide").hide();
+    var phone_number = $("#id_phone_number").val();
+    
+    $.ajax({
+      url: "{% url 'Home:validate_payment' %}",
+    
+      async: true,
+      data: {
+        "phone_number": phone_number
+        
+        },
+      
+      dataType: 'json',
+      success: function (data) {
+        // alert(data.message) 
+
+        $(".mpesa_code").show();
+        $(document).scrollTop($('.mpesa_code').offset().top)     
+          },
+      error:function (data) {
+        alert(data.err_message)      
+          },
+
+    });
+
+  }); 
+
+</script>
+
+<script>
+
+  $('#post-code').on('submit', function(event){
+    event.preventDefault();
+    // $(".load_progress").show();
+    // alert("hey submit is working")
+    var mpesa_code = $("#id_mpesa_code").val();
+    
+    $.ajax({
+      url: "{% url 'Home:validate_mpesa_code' %}",
+    
+      async: true,
+      data: {
+        "mpesa_code": mpesa_code    
+        },
+      
+      dataType: 'json',
+      success: function (data) {
+        // alert(data.message) 
+        if (data.message == "Transaction Successful") {
+          $(".mpesa_code").hide();   
+          $(".load_progress").hide();
+          $(".payment_successful").show();
+          $(".load-hide").hide();
+
+          }
+        else  
+          {
+            $(".mpesa_code").show();   
+            $(".load_progress").show();
+            }
+          },
+      failure:function (data) {
+        alert(data.message)      
+          },
+
+    });
+
+  }); 
+</script>
+
+<script>
+  $('.confirm_code').click(function (event) {
+      // alert("clicked")
+      $(".load_progress").show();
+      $(".mpesa_code").show();   
+      
+      $(".load-hide").hide();
+      $(document).scrollTop($('.mpesa_code').offset().top)
+});
+</script>
+
+<script>
+  $('#id_back').click(function (event) {
+      event.preventDefault();
+      
+      $(".load_progress").hide();
+      $(".mpesa_code").hide();   
+      
+      $(".load-hide").show();
+      $(document).scrollTop($('#id_top').offset().top)
+
+});
+</script>
+  {% endblock %}
+
+
+</body>
+
+</html>

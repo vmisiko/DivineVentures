@@ -1,0 +1,261 @@
+<html>
+    {% extends "base.html" %}
+    {%  load crispy_forms_tags %}
+    {% load staticfiles %}
+    <head>
+
+        <title> withrawal </title>
+        <style type="text/css"> 
+          
+        </style>
+        
+    </head>
+<body>
+
+       
+              
+
+        {% block content %}
+
+        <Section class="pt-5 my-5 section1 ">
+        
+           <div class="container ">
+                <h2 class="text-center text-success">Withdraw Cash </h2>
+            <div class="card">
+                <div class="card-header">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                            aria-selected="true"><i class="fab fa-paypal"></i> Paypal</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                            aria-selected="false">Mpesa</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                            aria-selected="false">Contact</a>
+                        </li>
+                      </ul>
+                </div>
+                      <div class="tab-content card-body" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            
+                          <div class="modal-body">
+
+                            {% if referral_code.paid != True %}
+
+                              <div class="alert alert-danger" role="alert">
+                                  <P> Sorry, you have not subcribed to start earning from your referrals  </P>
+                                  <P> You have {{referral_code.referred}} paid referrals</P>
+                                  <p> If you wish to Claim your cash, please subscribe by paying $5 to access your cash</p>
+                                  <p>Use the below <a href="{% url 'Home:mpesa_payment'%}"> link </a>  to pay for your subscription </p>
+                                  <P> Goodluck !!</P>
+
+                                </div>
+
+                            {%  elif referral_code.amount >= 1 %}
+
+                            <img class="mx-auto" src="{% static 'img/paypal1.jpg' %}" alt="" height= "70"> 
+                           
+                            <form id="post-paypal" class="">
+                              <P>Request to withdraw <strong><span class="badge badge-pill blue z-depth-1 mr-1 ">${{ amount }} </span></strong></P>
+                                {% csrf_token %}
+
+                                {{ form|crispy }}
+                                
+                               
+                               <button class="btn btn-primary " type="submit">Submit</button>
+                            </form>
+
+                            {% else %}
+                            <div class="alert alert-danger" role="alert">
+                                <P> Sorry, you do not have a enough credit to withdraw  </P>
+                                <P> A minimum amount for withdraw  is $30 </P>
+                                <p> Ensure you Get aleast 10 paid refferals to withdraw</p>
+                                <P> Goodluck !!</P>
+
+                              </div>
+                            {% endif %}
+                             </div>                           
+                          </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            
+                        </div>
+                        
+                      </div>
+            </div>
+
+            </div> 
+            
+        </Section>
+
+        <!-- load progress  -->
+        <section>
+            <div class="container mb-5">
+              <div style = "display: none" class="card load_progress">
+
+                <div class="card-body">
+                    <div  class = " text-center">
+                        <h3 class="mr-3"> loading .... </h3>
+                      
+                        <hr class="my-2">
+                        <img src = "{% static 'img/preloader.gif' %}"  height="200" width="150" >
+        
+                        
+        
+                      
+                    </div>
+                </div>
+
+              </div>
+            </div>
+        </section>
+        <!-- /load progress  -->
+
+         <!-- successful transactioan  -->
+        <section style = "display: none; " class="section2">
+          <div class="container">
+          <div  class=" card mx-auto mt-5">
+
+
+              <div  class = "card-body mx-auto ">
+
+                  <hr class="mb-5">
+                  <div class = "row  wOW fadeIn">
+                      <div class = " col-4 text-center  ">
+                          <i class="fas fa-check-circle fa-5x" style="color:rgba(55, 0, 255, 0.911);" ></i>
+                      </div>
+                      <div class = " col-8 text-center  ">
+                          <h5 class="mr-3 pt-4" style= "color:rgba(55, 0, 255, 0.911);">Request Succesful </h5>      
+                      </div>
+    
+                  </div>
+                  <div class= "text-center">
+                      <P class = "pt-3 px-3">  Your withdrawal request has been sent, awaiting approval and release.</P>
+                        <P> It takes less than 24 hours to be approved in a normal business day. </P>
+    
+                          <hr class="mb-4"> 
+                        <a onClick="window.location.reload()" class = "btn btn-primary btn-rounded"> Refresh for status update </a>
+                      
+                  </div>
+                   
+                   <hr class="mb-4">
+    
+              </div>
+              
+          </div>
+          <hr class="mb-4">
+          </div>
+        </section>
+        <!--/ sucessful transactioan  -->
+
+        <!-- transaction history  -->
+        <section>
+          <div id= "contact" class="container"> 
+              <div class="card ">
+                <div class="card-header">
+                    <h2 class=" blue-text"> Transaction History </h2>
+
+                </div>
+
+                <div class=" card-body table-responsive text-nowrap">
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">User</th>
+                          <th scope="col">Payment Mode</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Status</th>
+                          
+                        </tr>
+                      </thead>
+
+                  
+
+                      <tbody>
+                        
+                    {% for payout in payouts %}
+                        <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ payout.user}}</td>
+                          <td>{{ payout.payment_mode}}</td>
+                          <td>$ {{ payout.amount}}</td>
+                          <td>{{ payout.date }}</td>
+                          {%if payout.status == False %}
+                          <td><span class="badge badge-pill purple " style="font-size: medium;"> pending ... </span></td>
+                          {% else %}
+                          <td><span class="badge badge-pill badge-success " style="font-size: medium;"> paid </span></td>
+                          
+                          {% endif %}
+                        </tr>
+                    {%  empty %}
+                        <tr>
+                          <td colspan="6"> You have no previous Transctions </td>
+                        </tr>
+                      
+                    {% endfor %}
+                      
+                      </tbody>
+                    </table>
+                  
+                </div>
+              </div>
+              <hr class="mb-5">
+          </div>
+        </section>
+
+<script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+<script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script  src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<script>
+  $('#post-paypal').on('submit', function(event){
+   event.preventDefault();
+   $(".load_progress").show();
+   $(".section1").hide();
+   // alert("hey submit is working")
+   var first_name = $("#id_first_name").val();
+   var last_name = $("#id_last_name").val();
+   var phone_number = $("#id_phone_number").val();
+   var email = $("#id_paypal_email").val();
+  
+   $.ajax({
+     url: "{% url 'Home:validate_paypal_withdrawal' %}", 
+     
+     type:"POST" , 
+     async: true,
+     data: {
+       "first_name": first_name,
+       "last_name" : last_name,
+       "phone_number" : phone_number,
+       "email" : email,
+       "csrfmiddlewaretoken": '{{ csrf_token }}' 
+       },
+     
+     dataType: 'json',
+     success: function (data) {
+       alert(data.message); 
+       $(".load_progress").hide();
+       $(".section2").show();
+         },
+     failure:function (data) {
+       alert(data.message) ;
+       $(".section2").hide(); 
+       $(".section1").show();    
+         },
+
+   });
+
+ }); 
+</script> 
+  
+{% endblock %} 
+
+</body>  
+
+</html>

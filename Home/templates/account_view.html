@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en" dir="ltr">
+{% load  staticfiles %}
+{% load pinax_referrals_tags %}
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+      <!-- Bootstrap core CSS -->
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <!-- Material Design Bootstrap -->
+      <link href="{%                      static 'css/mdb.min.css' %}" rel="stylesheet">
+      <!-- Your custom styles (optional) -->
+      <link href="{% static 'css/style.min.css'%}" rel="stylesheet">
+     
+      <style>
+        .carousel,
+        .carousel-item,
+        .carousel-item.active {
+          height:300px;!important
+        }
+        .carousel-inner {
+          height: 300px;!important
+        }
+      </style>
+  </head>
+  <body>
+
+
+    {% block content %}
+
+
+        <!-- data-ride="carousel" -->
+        <!--Carousel Wrapper-->
+        <div id="carousel-example-1z" class="carousel slide carousel-fade">
+      
+              <!--Indicators-->
+              <ol class="carousel-indicators">
+                <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+              </ol>
+              <!--/.Indicators-->
+          
+              <!--Slides-->
+              <div class="carousel-inner" role="listbox">
+          
+                <!--First slide-->
+                <div class="carousel-item active">
+                  <div class="view">
+          
+                    <!--Video source-->
+                    <div class="view" style="background-image: url({% static 'img/dollar1.jpg' %}); background-repeat: no-repeat; background-size: cover;"></div>
+          
+          
+                    <!-- Mask & flexbox options-->
+                    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          
+                      <!-- Content -->
+                      <div class="text-center white-text mx-5 wow fadeIn">
+                        <h1 class="mb-4">
+                          <strong>MILLIONAIRE CLUB</strong>
+                        </h1>
+          
+                        <p>
+                          <strong>Full time and part time Employment </strong>
+                        </p>
+          
+                        <p class="mb-4 d-none d-md-block">
+                          <strong>The most comprehensive place for you to get more money at the comfort of your Home. Loved by over 500 000 users. 
+                          </strong>
+                        </p>
+
+                        <h3> Keep it here, we will keep you posted.</h3>
+                      </div>
+                      <!-- Content -->
+          
+                    </div>
+                    <!-- Mask & flexbox options-->
+          
+                  </div>
+                </div>
+                <!--/First slide-->
+          
+                <!--Second slide-->
+                <div class="carousel-item">
+                  <div class="view" style="background-image: url({% static 'img/dolar4.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+          
+                    <!-- Mask & flexbox options-->
+                    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          
+                      <!-- Content -->
+                      <div class="text-center white-text mx-5 wow fadeIn">
+                        <h1 class="mb-4">
+                          <strong>MILLIONAIRE CLUB</strong>
+                        </h1>
+          
+                        <p>
+                          <strong>Full time and part time Employment </strong>
+                        </p>
+          
+                        <p class="mb-4 d-none d-md-block">
+                          <strong>The most comprehensive place for you to get more money at the comfort of your Home. Loved by over 500 000 users. 
+                          </strong>
+                        </p>
+          
+                        <h3> Keep it here, we will keep you posted.</h3>
+                      </div>
+                      <!-- Content -->
+          
+                    </div>
+                    <!-- Mask & flexbox options-->
+          
+                  </div>
+                </div>
+                <!--/Second slide-->
+          
+                <!--Third slide-->
+                <div class="carousel-item">
+                  <div class="view">
+          
+                    <!--Video source-->
+                    <video class="video-intro" autoplay loop muted>
+                        <source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
+                    </video>
+          
+                    <!-- Mask & flexbox options-->
+                    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          
+                      <!-- Content -->
+                      <div class="text-center white-text mx-5 wow fadeIn">
+                        <h1 class="mb-4">
+                          <strong>MILLIONAIRE CLUB</strong>
+                        </h1>
+          
+                        <p>
+                          <strong>Full time and part time Employment </strong>
+                        </p>
+          
+                        <p class="mb-4 d-none d-md-block">
+                          <strong>The most comprehensive place for you to get more money at the comfort of your Home. Loved by over 500 000 users. 
+                          </strong>
+                        </p>
+          
+                        <h3> Keep it here, we will keep you posted.</h3>
+                      </div>
+                      <!-- Content -->
+          
+                    </div>
+                    <!-- Mask & flexbox options-->
+          
+                  </div>
+                </div>
+                <!--/Third slide-->
+          
+              </div>
+              <!--/.Slides-->
+          
+              <!--Controls-->
+              <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" style = "color: brown;" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a  class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"  style = "color: brown;" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              <!--/.Controls-->
+          
+            </div>
+            <!--/.Carousel Wrapper-->
+          
+            <!--Main layout-->
+            {% referral_responses request.user as responses %}
+
+            <main>
+              <div class="container">
+
+              <!--Card-->
+              <div class="card card-cascade text-left">
+                            
+                <!--Card image-->
+                <div class="view  text-white text-center view-cascade gradient-card-header blue-gradient">
+
+                    <!-- Title -->
+                    <a href=""  class = "pink-hover lighten-2-hover">
+                      <h2 class="card-header-title text-white mb-3 mt-2"><strong> Dashboard </strong></h2>
+                    </a>
+                    
+                
+                  </div>
+
+                  <div class="list-group list-group-flush">
+                    <p  class="list-group-item active waves-effect">
+                      <i class="fas fa-chart-pie mr-3"></i>Your were invited by :{{ referrer }}
+                    </p>
+                    {% if status == "Paid"%}
+                      <p  class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-check-circle mr-3"></i>Status : <span class = "badge badge-pill green z-depth-1 mr-1">{{status}}
+                      </p>
+                    {% else %}
+                      <p  class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-check-circle mr-3"></i>Status : <span class = "badge badge-pill red z-depth-1 mr-1">{{status}}
+                      </p>
+
+                    {% endif %}
+                    
+                    <p  class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-user mr-3"></i>Total number of paid Referrals : <span  id="id_paid" class="badge green z-depth-1 mr-1">  {{paid}} </span> </p>
+                    <p  class="list-group-item list-group-item-action waves-effect">
+                      <i class="fas fa-user mr-3"></i>Total number of signed up Referrals : <span id ="id_signup" class="badge blue z-depth-1 mr-1">  {{qr}} </span> </p>
+                    <p  class="list-group-item list-group-item-action waves-effect">
+                      <i class="fas fa-table mr-3"></i>Total number of Clicks : <span id = "id_clicks" class="badge red z-depth-1 mr-1">  {{clicks}} </span></p>
+                    <p  class="list-group-item list-group-item-action waves-effect">
+                      <i class="fas fa-map mr-3"></i>Your Account Balance : <strong class= "purple-text"> $ {{balance}}</strong></p>
+                    
+                      <!--Dropdown primary-->
+                          <div class="dropdown">
+
+                            <!--Trigger-->
+                            <!-- <a class=" dropdown-toggle"  id="dropdownMenu2" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">Material dropdown</a> -->
+                            
+                            <a href="#" class=" dropdown-toggle list-group-item list-group-item-action waves-effect" id="dropdownMenu2"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      
+                                <span class = "badge badge-pill primary-color " style="font-size: large;">
+                                <i class="fas fa-money-bill-alt mr-3"></i> Pay to start Earning From your Referrals
+                                </span> 
+                                  
+                            </a>
+
+                            <!--Menu-->
+                            <div class="dropdown-menu ">
+                              <a class="dropdown-item" href="/lnm_payment/">Mpesa</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/payment/">Paypal</a>
+                              
+                            </div>
+                          </div>
+<!--/Dropdown primary-->
+
+                    
+                      
+                        
+                    <a href = "/withdraw/" class="list-group-item list-group-item-action waves-effect">
+                      <i class="fas fa-money-bill-alt mr-3"></i>Widthdraw </a>
+                      
+                        <h5 class = " list-group-item list-group-item-action waves-effectmx-4 "><i class="fas fa-link"></i> Reffer people using the below refferal code  </h5> 
+
+                        <input class=" list-group-item list-group-item-action waves-effectmx-4 pb-2 " type="text" value="{{referral_code.referral.url }}" id="teks">
+                        
+                        <button class = "btn btn-primary mt-3 pb-3 mx-4" onclick="myFunction()"> Click Here To Copy Link </button>
+                      
+                  </div>
+
+
+              </div>
+              <!--Card-->
+
+                
+
+                       
+     
+               
+                   
+            
+                <!--Section: Main info-->
+                <section class="mt-5 wow fadeIn">
+          
+                  <!--Grid row-->
+                  <div class="row">
+          
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4">
+          
+                       <!--Card-->
+                        <div class="card card-cascade " >
+                          
+                            <!--Card image-->
+                            <div class="view  text-white view-cascade gradient-card-header purple-gradient">
+              
+                                <!-- Title -->
+                                <a href=""  class = "pink-hover lighten-2-hover">
+                                  <h2 class="card-header-title text-white text-center mb-3 mt-2"><strong> Realtime signup activity<sup><span id ="id_signup_1" class="badge badge-pill red z-depth-1 mr-1">  {{qr}} </span></sup></strong></h2>
+                                </a>
+                                <!-- Title -->
+                            
+                              </div>
+                            
+              
+                            <!--Card content-->
+                            <div class="card-body text-center" style="overflow:auto; height: 300px ">
+                              
+                            {% ifequal qr 0  %}
+                                <p class="list-group-item list-group-item-action waves-effect my-3">
+                                    0 users signed in with your link
+                                </p>
+
+                                <hr class="pt-5 mb-5">
+
+                            {% else %}
+
+                                {% for response in responses %}
+
+                                    {% if response.action|action_display == "SIGNED_UP" %}
+
+                                      <p class="list-group-item list-group-item-action waves-effect">
+                                          user : {{response.action|action_display}}
+                                      </p>
+                                    {% endif %}
+
+                        
+                                {%  endfor %}
+
+                            {% endifequal %}
+              
+                            </div>
+                            <!--Card content-->
+              
+                          </div>
+                       <!--Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+
+                    <!-- grid column  -->
+
+                    <div class="col-md-6 mb-4">
+          
+                      <!--Card-->
+                       <div class="card card-cascade " >
+                         
+                           <!--Card image-->
+                           <div class="view  text-white view-cascade gradient-card-header morpheus-den-gradient">
+             
+                               <!-- Title -->
+                               <a href=""  class = "pink-hover lighten-2-hover">
+                                 <h2 class="card-header-title text-white text-center mb-3 mt-2"><strong> Realtime Paid refferals<sup><span id="id_paid_1" class="badge badge-pill green z-depth-1 mr-1">  {{paid}} </span></sup></strong></h2>
+                               </a>
+                               <!-- Title -->
+                           
+                             </div>
+                           
+             
+                           <!--Card content-->
+                           <div class="card-body text-center" style="overflow:auto; height: 300px ">
+                             
+                           {% ifequal paid 0  %}
+                               <p class="list-group-item list-group-item-action waves-effect my-3">
+                                   0 users paid using your referral link
+                               </p>
+
+                               <hr class="pt-5 mb-5">
+
+                           {% else %}
+
+                               {% for response in responses %}
+
+                                   {% if response.action|action_display == "PAID" %}
+
+                                     <p class="list-group-item list-group-item-action waves-effect">
+                                         user : {{response.action|action_display}}
+                                     </p>
+                                   {% endif %}
+
+                       
+                               {%  endfor %}
+
+                           {% endifequal %}
+             
+                           </div>
+                           <!--Card content-->
+             
+                         </div>
+                      <!--Card-->
+
+                   </div>
+
+                
+          
+                  </div>
+                  <!--Grid row-->
+          
+                </section>
+                <!--Section: Main info-->
+          
+                <hr class="my-5">
+          
+                <!--Section: Main features & Quick Start-->
+                <section>
+          
+                  <h3 class="h3 text-center mb-5"> We Offer</h3>
+          
+                  <!--Grid row-->
+                  <div class="row wow fadeIn">
+          
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 px-4">
+          
+                      <!--First row-->
+                      <div class="row">
+                        <div class="col-1 mr-3">
+                          <i class="fas fa-laptop fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-10">
+                          <h5 class="feature-title"> To Pay:</h5>
+                          <p class="grey-text">You can Earn USD $3 per refferal joined. If you get 10 people per day, it amounts to $30 clean bucks for you.</p>
+                        </div>
+                      </div>
+                      <!--/First row-->
+          
+                      <div style="height:30px"></div>
+          
+                      <!--Second row-->
+                      <div class="row">
+                        <div class="col-1 mr-3">
+                          <i class="fas fa-credit-card fa-2x blue-text"></i>
+                        </div>
+                        <div class="col-10">
+                          <h5 class="feature-title">Payment Process</h5>
+                          <p class="grey-text">We pay via paypal and mobile money through Mpesa for our Kenyan Customers. If you Widthdraw 
+                          using  Mpesa, make sure you get Mpesa Registered Line for easier Transaction.
+                          </p>
+                        </div>
+                      </div>
+                      <!--/Second row-->
+          
+                      <div style="height:30px"></div>
+          
+                      <!--Third row-->
+                      <div class="row">
+                        <div class="col-1 mr-3">
+                          <i class="fas fa-graduation-cap fa-2x cyan-text"></i>
+                        </div>
+                        <div class="col-10">
+                          <h5 class="feature-title"> Online Jobs</h5>
+                          <p class="grey-text">World Wide  part time and Full time job for our global clients and customers. Working from the comfort of your Home.
+                        All you is a computer or a smartphone and data bundles.  
+                          </p>
+          
+                        </div>
+                      </div>
+                      <!--/Third row-->
+          
+                    </div>
+                    <!--/Grid column-->
+          
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12">
+          
+                      <!--Card-->
+                        <div class="card card-cascade ">
+                          
+                            <!--Card image-->
+                            <div class="view  text-white view-cascade gradient-card-header blue-gradient">
+              
+                                <!-- Title -->
+                                <a  href=""  class = "pink-hover lighten-2-hover">
+                                  <h2 class="card-header-title text-white text-center mb-3 mt-2"><strong> Realtime  Clicks Activity <sup><span id = "id_clicks_1" class="badge badge-pill green z-depth-1 mr-1">  {{clicks}} </span></sup></strong></h2>
+                                </a>
+                                <!-- Title -->
+                            
+                              </div>
+                            
+              
+                            <!--Card content-->
+                            <div class="card-body text-center" style="overflow:auto; height: 320PX ">
+                              
+                            {% ifequal clicks 0  %}
+                                <p class="list-group-item list-group-item-action waves-effect my-3">
+                                    0 realtime clicks to your link
+                                </p>
+
+                                <hr class="pt-5 mb-5">
+
+                            {% else %}
+
+                                {% for response in responses %}
+
+                                    {% if response.action|action_display != "SIGNED_UP" %}
+
+                                      <p class="list-group-item list-group-item-action waves-effect">
+                                          user{{forloop.counter0}} : {{response.action|action_display}}
+                                      </p>
+                                    {% endif %}
+
+                        
+                                {%  endfor %}
+
+                            {% endifequal %}
+              
+                            </div>
+                            <!--Card content-->
+              
+                          </div>
+                       <!--Card-->
+                    </div>
+                    <!--/Grid column-->
+          
+                  </div>
+                  <!--/Grid row-->
+          
+                </section>
+                <!--Section: Main features & Quick Start-->
+          
+                <hr class="my-5">
+          
+          
+                <!--Section: Earning summary-->
+                <section>
+                  <div class = "container">
+                    <h2 class = "text-center my-5">
+                      <strong>Earning Summary</strong>
+                    </h2>
+                      <div class="row  mb-5 mt-3 wow fadeIn">
+
+                    
+                        <!-- first column -->
+                        <div class="col-md-4">
+                          <div class = "card">
+                              <div class="card-body">
+
+                                  <!-- Title -->
+                                  <h4 class="card-title text-center">Refferals</h4>
+                                  
+                              
+                                  <div class = "row">
+                                      <div class="col-2">
+                                          <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                        </div>
+                                        <div class="col-10">
+                                          <h6 class="feature-title"> 10-weekly</h6>
+                                        </div>
+          
+                                  </div>
+                                  <div class = "row">
+                                      <div class="col-2">
+                                          <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                        </div>
+                                        <div class="col-10">
+                                          <h6 class="feature-title"> 40-weekly</h6>
+                                        </div>
+          
+                                  </div>
+                                  <div class = "row">
+                                      <div class="col-2">
+                                          <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                        </div>
+                                        <div class="col-10">
+                                          <h6 class="feature-title"> 100-weekly</h6>
+                                        </div>
+          
+                                  </div>
+                                  <div class = "row">
+                                      <div class="col-2">
+                                          <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                        </div>
+                                        <div class="col-10">
+                                          <h6 class="feature-title"> 200-weekly</h6>
+                                        </div>
+          
+                                  </div>
+                                  <div class = "row">
+                                      <div class="col-2">
+                                          <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                        </div>
+                                        <div class="col-10">
+                                          <h6 class="feature-title"> 500-weekly</h6>
+                                        </div>
+          
+                                  </div>
+                              </div>
+                              
+                          </div> 
+                        </div>
+                        <!-- first column  -->
+
+                        <!-- second column -->
+                        <div class="col-md-4 ">
+                            <div class = "card">
+                                <div class="card-body">
+      
+                                    <!-- Title -->
+                                    <h4 class="card-title text-center">Earnings per Week</h4>
+                                    
+                                
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            
+                                            <h6 class="feature-title">$ 30 (ksh: 3,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title"> $ 120 (ksh: 12,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title">$ 300 (ksh: 30,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title">$ 600 (ksh: 60,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title">$ 1500 (ksh: 150,000)</h6>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                        <!-- second column  -->
+
+                        <!-- Third column -->
+                        <div class="col-md-4">
+                            <div class = "card">
+                                <div class="card-body">
+      
+                                    <!-- Title -->
+                                    <h4 class="card-title text-center">Earnings Per Month</h4>
+                                    
+                                
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            
+                                            <h6 class="feature-title">$ 120 (ksh: 12,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title"> $ 480 (ksh: 48,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title">$ 1200 (ksh: 120,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title">$ 2400 (ksh: 240,000)</h6>
+                                          </div>
+            
+                                    </div>
+                                    <div class = "row">
+                                        <div class="col-2">
+                                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                          </div>
+                                          <div class="col-10">
+                                            <h6 class="feature-title">$ 6000 (ksh: 600,000)</h6>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                        <!-- third column  -->
+                  
+                      </div>
+                  </div>
+                </section>
+                
+                <!--Section: Earning summary-->
+                 <!-- embed map  -->
+              <!-- <section>
+                  <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.850384147331!2d36.81708841457239!3d-1.2620983990794483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f171bcd262409%3A0x80faf600e80fe813!2sKirvam%20International%20Ltd!5e0!3m2!1sen!2ske!4v1574407598801!5m2!1sen!2ske" width= 100% height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+              </section> -->
+
+                <!-- section Explore  -->
+                <section id="splash-notebank-ad">
+            
+
+                    <div class="  container text-center " style="background-color: purple; margin: 15px" >
+        
+                      <div class="col-xs-12 white-text" style="padding:10px;">
+                      <img style="width: 250px; height: 180px ;display: block; margin-left: auto; margin-right: auto;" src="{% static 'img/notebank.png'%}">
+                      <h1>Explore the Divine Ventures </h1>
+                      <h2> A world Of Opportunities</h2>
+        
+                      <hr class="mb-2">
+                      <h1><i class="fab fa-safari"></i></h1>
+        
+                      <h2>Browse over this site and enjoy working at the comfort of your Home, in any part of the world </h2>
+                      <a href="notebank.html">
+                        <hr class="mb-2">
+                      <button class="btn btn-info mr-auto ml-auto">Contact Us</button>
+                      </a>
+                      </div>
+        
+                    </div>
+                    
+        
+               </section>
+              <!-- section Explore -->
+               <hr class="mb-5">
+              
+               <!-- section review -->
+               <section id="splash-testimonials">
+                  <div class="container">
+        
+                  <!-- <i  style=" color:blue; width: 150px; height: 50px ;display: block; margin-left: auto; margin-right: auto;" class="fas fa-quote-right"></i> -->
+                  
+                      
+                  <img style="width: 70px; height: 50px ;display: block; margin-left: auto; margin-right: auto;"  src="{% static 'img/quotes.png'%}" class="quote">
+                  
+                  <p class = "text-center">
+        
+                  I started working at Devine Ventures after a friend reffered it to me. It's Awesome Especially 
+                  because i work at the comfort of my Home, and earn handsome junk of money. All of you should click my refferal .....
+        
+                  </p>
+              
+                  
+                </div> 
+               </section>
+              <!-- section review -->
+                  <hr class="mb-5">
+                
+              </div>
+            </main>
+            <!--Main layout-->
+<script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>       
+           
+ <script>
+      function myFunction() {
+        var copyText = document.getElementById("teks");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        alert("Copied the link: " + copyText.value);
+      }
+      </script>
+
+    
+    <!-- SCRIPTS -->
+  
+  <!-- Bootstrap tooltips -->
+  <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+  <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script  src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  <!-- <script type="text/javascript"> -->
+     <!-- Animations initialization -->
+    <!-- new WOW().init(); -->
+  <!-- </script> -->
+  <script>
+   //websockets
+   loc =window.location
+  //  console.log(loc)
+   
+   var wstart = "WS://"
+   if (loc.protocol == "https"){
+     wstart = "wss://"
+   }
+
+   var endpoint = wstart + loc.host + loc.pathname
+   var socket = new WebSocket(endpoint)
+
+   socket.onmessage = function(e){
+     console.log("message" ,e)
+     var message = JSON.parse(e.data)
+     var audio = new Audio("{% static 'when.mp3'%}")
+     if ( message.user == "{{request.user}}") {
+
+        document.getElementById("id_paid").innerHTML = message.paid;
+        document.getElementById("id_signup").innerHTML = message.signed_up;
+        document.getElementById("id_clicks").innerHTML = message.clicks;
+        document.getElementById("id_paid_1").innerHTML = message.paid;
+        document.getElementById("id_signup_1").innerHTML = message.signed_up;
+        document.getElementById("id_clicks_1").innerHTML = message.clicks;
+        audio.play()
+      }
+    }
+   socket.onopen = function(e){
+     console.log("open" ,e)
+    
+   }
+   socket.onerror=function(e){
+     console.log("error" ,e)
+   }
+   socket.onclose =function(e){
+     console.log("close" ,e)
+   }
+
+  </script>  
+  {% endblock%}
+  </body>>
+    
+</html>
+
+
+

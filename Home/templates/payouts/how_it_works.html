@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    {% block content%}
+     <!--Section: Main features & Quick Start-->
+     <main>
+      <section>
+        <div class="container pt-5 my-5">
+          <h3 class="h3 text-center mb-5"> How it works</h3>
+  
+          <!--Grid row-->
+          <div class="row wow fadeIn">
+  
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 px-4">
+  
+              <!--First row-->
+              <div class="row">
+                <div class="col-1 mr-3">
+                  <i class="fas fa-laptop fa-2x indigo-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="feature-title"> To start Earning:</h5>
+                  <p class="grey-text">The first requirement is signup. If you have already signed up, you will be assigned a referral code to start earning with. continue to the next step below</p>
+                </div>
+              </div>
+              <!--/First row-->
+  
+              <div style="height:30px"></div>
+  
+              <!--Second row-->
+              <div class="row">
+                <div class="col-1 mr-3">
+                  <i class="fas fa-credit-card fa-2x blue-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="feature-title">Earn from referrals</h5>
+                  <p class="grey-text">
+                      You are required to pay a fee of $5 USD, for you to start earning from the referrals you attract. $3 USD will
+                      go to your referrer, and $2 USD will go to the system for mentainance.Use this <a href="/lnm_payment/">link</a> if you have not subscribed
+                  </p>
+                </div>
+              </div>
+              <!--/Second row-->
+  
+              <div style="height:30px"></div>
+  
+              <!--Third row-->
+              <div class="row">
+                <div class="col-1 mr-3">
+                  <i class="fas fa-graduation-cap fa-2x cyan-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="feature-title"> Withdraw your funds</h5>
+                  <p class="grey-text">You are required to have a minimum of 5 referrals in order for you to withdraw your Money. That is 
+                      a minimum of $15 USD. Manageable, right? We have to forms of withdrawal, one through paypal, 
+                      and also through Mpesa for our Kenyan customers
+                      
+  
+                </div>
+              </div>
+              <!--/Third row-->
+  
+            </div>
+            <!--/Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12">
+  
+              <p class="h5 text-center mb-4">Use Your phone to make substantial Gain</p>
+              <div class="embed-responsive embed-responsive-16by9">
+                <img class ="embed-responsive-item" src = "{% static 'img/phonepen.jpg' %}" > </img>
+  
+                <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cXTThxoywNQ" allowfullscreen></iframe> -->
+              </div>
+            </div>
+            <!--/Grid column-->
+  
+          </div>
+          <!--/Grid row-->
+        </div>
+  </section>
+          <!--Section: Main features & Quick Start-->
+
+       <!--Section: Earning summary-->
+       <section>
+            <div class = "container">
+              <h2 class = "text-center my-5">
+                <strong>Earning Summary</strong>
+              </h2>
+                <div class="row  mb-5 mt-3 wow fadeIn">
+
+              
+                  <!-- first column -->
+                  <div class="col-md-4">
+                    <div class = "card">
+                        <div class="card-body">
+
+                            <!-- Title -->
+                            <h4 class="card-title text-center">Refferals</h4>
+                            
+                        
+                            <div class = "row">
+                                <div class="col-2">
+                                    <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                  </div>
+                                  <div class="col-10">
+                                    <h6 class="feature-title"> 10-weekly</h6>
+                                  </div>
+    
+                            </div>
+                            <div class = "row">
+                                <div class="col-2">
+                                    <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                  </div>
+                                  <div class="col-10">
+                                    <h6 class="feature-title"> 40-weekly</h6>
+                                  </div>
+    
+                            </div>
+                            <div class = "row">
+                                <div class="col-2">
+                                    <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                  </div>
+                                  <div class="col-10">
+                                    <h6 class="feature-title"> 100-weekly</h6>
+                                  </div>
+    
+                            </div>
+                            <div class = "row">
+                                <div class="col-2">
+                                    <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                  </div>
+                                  <div class="col-10">
+                                    <h6 class="feature-title"> 200-weekly</h6>
+                                  </div>
+    
+                            </div>
+                            <div class = "row">
+                                <div class="col-2">
+                                    <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                  </div>
+                                  <div class="col-10">
+                                    <h6 class="feature-title"> 500-weekly</h6>
+                                  </div>
+    
+                            </div>
+                        </div>
+                        
+                    </div> 
+                  </div>
+                  <!-- first column  -->
+
+                  <!-- second column -->
+                  <div class="col-md-4 ">
+                      <div class = "card">
+                          <div class="card-body">
+
+                              <!-- Title -->
+                              <h4 class="card-title text-center">Earnings per Week</h4>
+                              
+                          
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      
+                                      <h6 class="feature-title">$ 30 (ksh: 3,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title"> $ 120 (ksh: 12,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title">$ 300 (ksh: 30,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title">$ 600 (ksh: 60,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title">$ 1500 (ksh: 150,000)</h6>
+                                    </div>
+                              </div>
+                          </div>
+                          
+                      </div> 
+                  </div>
+                  <!-- second column  -->
+
+                  <!-- Third column -->
+                  <div class="col-md-4">
+                      <div class = "card">
+                          <div class="card-body">
+
+                              <!-- Title -->
+                              <h4 class="card-title text-center">Earnings Per Month</h4>
+                              
+                          
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      
+                                      <h6 class="feature-title">$ 120 (ksh: 12,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title"> $ 480 (ksh: 48,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title">$ 1200 (ksh: 120,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title">$ 2400 (ksh: 240,000)</h6>
+                                    </div>
+      
+                              </div>
+                              <div class = "row">
+                                  <div class="col-2">
+                                      <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                                    </div>
+                                    <div class="col-10">
+                                      <h6 class="feature-title">$ 6000 (ksh: 600,000)</h6>
+                                    </div>
+                              </div>
+                          </div>
+                          
+                      </div> 
+                  </div>
+                  <!-- third column  -->
+            
+                </div>
+            </div>
+          </section>
+          
+          <!--Section: Earning summary-->  
+    </main>
+
+    <!-- <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.min.js' %}"></script> -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+    {% endblock %}
+    
+    
+</body>
+</html>

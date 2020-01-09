@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    {% block content%}
+     
+     <main>
+
+     
+    <section>
+        <div class=" container-fluid">
+                <div class="card card-cascade text-left">
+                            
+                        <!--Card image-->
+                        <div class="view  text-white text-center view-cascade gradient-card-header blue-gradient my-5 ">
+
+                            <!-- Title -->
+                            <a href=""  class = "pink-hover lighten-2-hover">
+                              <h2 class="card-header-title text-white  mt-5"><strong> contact us </strong></h2>
+                            </a>
+                            
+                        
+                          </div>
+                </div>
+
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.850384147331!2d36.81708841457239!3d-1.2620983990794483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f171bcd262409%3A0x80faf600e80fe813!2sKirvam%20International%20Ltd!5e0!3m2!1sen!2ske!4v1574407598801!5m2!1sen!2ske" width= 100% height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+    </section>
+
+        
+    </main>
+
+    <!-- <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.min.js' %}"></script> -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+      </script>
+    {% endblock %}
+</body>
+</html>
