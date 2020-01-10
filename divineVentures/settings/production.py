@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     "Payouts",
     "rest_framework",
-    
+    "MpesaApp",
 
 
 
