@@ -14,15 +14,14 @@
     <!-- Your custom styles (optional) -->
     <link href="{%static "css/style.min.css" %}rel="stylesheet">
 
-    <script  src="{% static "js/jquery-3.4.1.min.js" %}"></script>
-    <script  src="{% static "js/bootstrap.bundle.js" %}"></script>
-    <script  src="{% static "js/bootstrap.bundle.min.js" %}"></script>
-    <script  src="{% static "js/bootstrap.min.js" %}"></script>
+    
 
   </head>
   <body>
         {% block content %}
         <h1 class=" pt-5 pb-5 mt-5 mx-5">   payment Cancelled </h1>
         {% endblock%}
+        {% block scripts%}
+    {% endblock %}
   </body>
 </html>

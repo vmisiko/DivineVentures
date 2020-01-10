@@ -24,5 +24,6 @@ urlpatterns = [
     path("referrals/", include("pinax.referrals.urls", namespace="pinax_referrals")),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('payout/', include('Payouts.urls' , namespace = "Payouts")),
+    path('mobile/', include('MpesaApp.urls' , namespace = "MpesaApp")),
     
    ]

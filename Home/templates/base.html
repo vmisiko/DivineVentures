@@ -62,15 +62,18 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <!-- <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  {% block scripts %}
+  <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
   <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
   <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.min.js' %}"></script> -->
-<!-- 
+  <script  src="{% static 'js/bootstrap.min.js' %}"></script>
+
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
-  </script> -->
+  </script>
+
+  {% endblock %}
 </body>
 
 </html>

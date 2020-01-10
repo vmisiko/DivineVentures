@@ -136,7 +136,7 @@
   
                 <!--address-->
                 <div class="col-12  md-form mb-5">
-                    <label for="id_phone_number" class="pb-5"> * Phone number </label>
+                   
                   <!-- <input type="text" id="address" class="form-control" placeholder=" "> -->
   
                   {{ form.phone_number }}
@@ -258,34 +258,25 @@
 
 
 
+  {% endblock %}
 
+  {% block scripts %}
 
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.min.js' %}"></script>
-
-  <!-- Initializations -->
-  <!-- <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-
-  </script> -->
+  
+  
 <script>
   $('#post-form').on('submit', function(event){
     event.preventDefault();
     $(".load_progress").show();
     $(".load-hide").hide();
-    var phone_number = $("#id_phone_number").val();
+    window.phone_number = $("#id_phone_number").val();
     
     $.ajax({
-      url: "{% url 'Home:validate_payment' %}",
+      url: "{% url 'MpesaApp:validate_payment' %}",
     
       async: true,
       data: {
-        "phone_number": phone_number
+        "phone_number": window.phone_number
         
         },
       
@@ -311,11 +302,12 @@
   $('#post-code').on('submit', function(event){
     event.preventDefault();
     // $(".load_progress").show();
+    // console.log("what is happening")
     // alert("hey submit is working")
     var mpesa_code = $("#id_mpesa_code").val();
     
     $.ajax({
-      url: "{% url 'Home:validate_mpesa_code' %}",
+      url: "{% url 'MpesaApp:validate_mpesa_code' %}",
     
       async: true,
       data: {
@@ -324,7 +316,7 @@
       
       dataType: 'json',
       success: function (data) {
-        // alert(data.message) 
+        alert(data.message) 
         if (data.message == "Transaction Successful") {
           $(".mpesa_code").hide();   
           $(".load_progress").hide();
@@ -370,6 +362,57 @@
 
 });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
+<script>
+  //websockets
+  loc =window.location
+ //  console.log(loc)
+  
+  var wstart = "WS://"
+  if (loc.protocol == "https"){
+     wstart = "WSS://"
+  }
+  
+  var endpoint = wstart + loc.host + loc.pathname
+  var socket = new ReconnectingWebSocket(endpoint)
+
+  socket.onmessage = function(e){
+    console.log("message" ,e);
+    var message = JSON.parse(e.data)
+    var phone_number = $('#id_phone_number').val()
+    // var audio = new Audio("{% static 'when.mp3'%}")
+    if ( message.phone_number == window.phone_number){
+      $(".mpesa_code").hide();   
+      $(".load_progress").hide();
+      $(".payment_successful").show();
+      $(".load-hide").hide();
+      console.log(window.phone_number);
+      console.log("{{request.user}}");
+      var finalData = {
+        "user": "{{request.user}}"
+      }
+      socket.send(JSON.stringify(finalData));
+     }
+    // else{
+    //   alert(" payment not from you ");
+    //   console.log(window.phone_number);
+    // }
+
+
+   }
+  socket.onopen = function(e){
+    console.log("open" ,e);
+   
+   
+  }
+  socket.onerror=function(e){
+    console.log("error" ,e)
+  }
+  socket.onclose =function(e){
+    console.log("close" ,e)
+  }
+
+ </script> 
   {% endblock %}
 
 

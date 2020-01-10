@@ -235,7 +235,7 @@
 
                             <!--Menu-->
                             <div class="dropdown-menu ">
-                              <a class="dropdown-item" href="/lnm_payment/">Mpesa</a>
+                              <a class="dropdown-item" href="/mobile/lnm_payment/">Mpesa</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/payment/">Paypal</a>
                               
@@ -763,9 +763,12 @@
                 
               </div>
             </main>
+
+  {% endblock %}
             <!--Main layout-->
-<script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>       
-           
+  
+{% block scripts %}      
+
  <script>
       function myFunction() {
         var copyText = document.getElementById("teks");
@@ -777,18 +780,9 @@
       </script>
 
     
-    <!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
+    
   
-  <!-- Bootstrap tooltips -->
-  <script  src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <script  src="{% static 'js/bootstrap.min.js' %}"></script>
-
-  <!-- <script type="text/javascript"> -->
-     <!-- Animations initialization -->
-    <!-- new WOW().init(); -->
-  <!-- </script> -->
   <script>
    //websockets
    loc =window.location
@@ -800,9 +794,9 @@
    }
 
    var endpoint = wstart + loc.host + loc.pathname
-   var socket = new WebSocket(endpoint)
+   var socket = new ReconnectWebSocket(endpoint)
 
-   socket.onmessage = function(e){
+   socket.onmessage = function(e){c
      console.log("message" ,e)
      var message = JSON.parse(e.data)
      var audio = new Audio("{% static 'when.mp3'%}")
@@ -829,7 +823,8 @@
    }
 
   </script>  
-  {% endblock%}
+
+  {% endblock %}
   </body>>
     
 </html>
