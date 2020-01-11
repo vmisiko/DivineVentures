@@ -53,6 +53,9 @@ class ConfirmMpesaPayment(AsyncConsumer):
             print(profile, "checking if profile is not none")
             profile.paid = True
             profile.save()
+
+           
+            
             
 
     async def send_message(self, event):

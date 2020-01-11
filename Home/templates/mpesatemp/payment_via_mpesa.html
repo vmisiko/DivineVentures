@@ -368,10 +368,10 @@
   loc =window.location
  //  console.log(loc)
   
-  var wstart = "WS://"
-  if (loc.protocol == "https"){
-     wstart = "WSS://"
-  }
+  var wstart = "WSS://"
+  // if (loc.protocol == "https"){
+  //    wstart = "WSS://"
+  // }
   
   var endpoint = wstart + loc.host + loc.pathname
   var socket = new ReconnectingWebSocket(endpoint)

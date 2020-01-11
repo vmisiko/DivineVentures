@@ -18,7 +18,40 @@
   </head>
   <body>
         {% block content %}
+
         <h1 class=" pt-5 pb-5 mt-5 mx-5">   payment Done </h1>
+        <div style = "display: none;  margin:auto" class = "payment_successful">
+
+          <hr class="mb-5">
+          <div class = "row  wOW fadeIn">
+              <div class = " col-4 text-center  ">
+                  <i class="fas fa-check-circle fa-5x" style="color:rgba(55, 0, 255, 0.911);" ></i>
+              </div>
+              <div class = " col-8 text-center  ">
+                  <h5 class="mr-3 pt-4" style= "color:rgba(55, 0, 255, 0.911);">Payment Succesful </h5>      
+              </div>
+
+          </div>
+          <div class= "text-center">
+              <P class = "pt-3 px-3"> Thank you for working with Divine Ventures. A world of Opportunities is 
+                awaiting you {{ request.user }}. You can now start earning from your referrals infinetly without 
+                paying a single dime, from now hence fourth.
+              </P>
+              <p>
+                regards, 
+              </p>
+              <p>
+                DivineVentures!  
+              </P>
+
+                  <hr class="mb-4"> 
+                
+              
+          </div>
+           
+           <hr class="mb-4">
+
+      </div>
         {% endblock%}
         {% block scripts%}
         {% endblock %}

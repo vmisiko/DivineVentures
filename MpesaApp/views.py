@@ -14,6 +14,7 @@ from rest_framework.permissions import AllowAny
 from .serializers import LNMOnlineSerializer,C2bSerializer
 from paypal.standard.forms import PayPalPaymentsForm
 from . models  import LNMOnline,C2bTransaction
+from pinax.referrals.models import Referral,ReferralResponse
 
 from Home.models  import Profile
 
