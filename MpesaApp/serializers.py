@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import LNMOnline, C2bTransaction
+from .models import LNMOnline, C2bTransaction, B2cTransaction
 
 class LNMOnlineSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,4 +33,16 @@ class C2bSerializer(serializers.ModelSerializer):
                 "LastName",
         ]
 
-
+class B2cSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = B2cTransaction
+        fields = [
+            "TransactionID",
+            "TransactionAmount",
+            "B2CWorkingAccountAvailableFunds",
+            "B2CUtilityAccountAvailableFunds",
+            "TransactionCompletedDateTime",
+            "ReceiverPartyPublicName",
+            "B2CChargesPaidAccountAvailableFunds",
+            "B2CRecipientIsRegisteredCustomer",
+        ]

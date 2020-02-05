@@ -13,7 +13,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from .serializers import LNMOnlineSerializer,C2bSerializer
 from paypal.standard.forms import PayPalPaymentsForm
-from . models  import LNMOnline,C2bTransaction
+from . models  import LNMOnline,C2bTransaction, B2cTransaction
 from pinax.referrals.models import Referral,ReferralResponse
 
 from Home.models  import Profile
@@ -224,3 +224,52 @@ class C2bCallbackUrl(CreateAPIView):
         
 
         return Response({"yey ": "it worked bwana again"})
+
+
+class B2cCallbackUrl(CreateAPIView):
+    queryset = B2cTransaction.objects.all()
+    serializer_class = B2cTransaction
+    permission_classes = [AllowAny]
+
+
+    def create(self, request):
+        print(request.data,"this is B2c data")
+
+        TransactionID = request.data["Result"]["TransactionID"]
+        TransactionAmount=request.data["Result"]["ResultParameters"]["ResultParameter"][1]["Value"]
+        B2CWorkingAccountAvailableFunds =request.data["Result"]["ResultParameters"]["ResultParameter"][2]["Value"]
+        B2CUtilityAccountAvailableFunds = request.data["Result"]["ResultParameters"]["ResultParameter"][3]["Value"]
+        TransactionCompletedDateTime = request.data["Result"]["ResultParameters"]["ResultParameter"][4]["Value"]
+        ReceiverPartyPublicName = request.data["Result"]["ResultParameters"]["ResultParameter"][5]["Value"]
+        B2CChargesPaidAccountAvailableFunds = request.data["Result"]["ResultParameters"]["ResultParameter"][6]["Value"]
+        B2CRecipientIsRegisteredCustomer = request.data["Result"]["ResultParameters"]["ResultParameter"][7]["Value"]
+
+        Trans = str(TransactionCompletedDateTime)
+
+        from datetime import datetime
+        Trans = str(TransactionCompletedDateTime)
+        print(Trans)
+        transp = datetime.strptime(Trans,"%d.%m.%Y %H:%M:%S")
+        print(transp, "it has been formated see")
+        transf = datetime.strptime(str(transp),"%Y-%m-%d %H:%M:%S") 
+        print(transf)
+
+        b2c = B2cTransaction.objects.create(
+            TransactionID =TransactionID,
+            TransactionAmount =TransactionAmount,
+            B2CWorkingAccountAvailableFunds =B2CWorkingAccountAvailableFunds,
+            B2CUtilityAccountAvailableFunds =B2CUtilityAccountAvailableFunds,
+            TransactionCompletedDateTime = transf,
+            ReceiverPartyPublicName = ReceiverPartyPublicName,
+            B2CChargesPaidAccountAvailableFunds =B2CChargesPaidAccountAvailableFunds,
+            B2CRecipientIsRegisteredCustomer =B2CRecipientIsRegisteredCustomer,
+
+        )
+        
+        b2c.save()
+
+        data = {
+            "result_code": "zero",
+        }
+
+        return Response(data)

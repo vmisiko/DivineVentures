@@ -12,6 +12,11 @@ from django.dispatch import receiver
 # from pinax.referrals.models import Referral,ReferralResponse
 from Home.models import Profile
 from .models import  LNMOnline
+from pinax.referrals.models import Referral,ReferralResponse
+
+class dot(dict):
+    pass
+
 
 class ConfirmMpesaPayment(AsyncConsumer):
     
@@ -43,6 +48,8 @@ class ConfirmMpesaPayment(AsyncConsumer):
         if front_end is not None:
             data = json.loads(front_end)
             user = data.get('user')
+            # request = data.get("request")
+            # print(request, "this is request")
             await self.send({
 
             "type": "websocket.send", 
@@ -53,10 +60,11 @@ class ConfirmMpesaPayment(AsyncConsumer):
             print(profile, "checking if profile is not none")
             profile.paid = True
             profile.save()
+            
+            request = dot(self.scope)
+            Referral.record_response(request, "PAID")
 
-           
-            
-            
+      
 
     async def send_message(self, event):
         print("it sending")
@@ -66,6 +74,10 @@ class ConfirmMpesaPayment(AsyncConsumer):
         })
     async def Websocket_disconnect(self, event):
         print("disconnected", event)
+        await self.send({
+
+            "type": "websocket.close",  
+        })
 
     @staticmethod
     @receiver(signals.post_save, sender = LNMOnline)

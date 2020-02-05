@@ -183,7 +183,7 @@
                           <th scope="row">{{ forloop.counter }}</th>
                           <td>{{ payout.user}}</td>
                           <td>{{ payout.payment_mode}}</td>
-                          <td>$ {{ payout.amount}}</td>
+                          <td>$ {{ payout.amount_request}}</td>
                           <td>{{ payout.date }}</td>
                           {%if payout.status == False %}
                           <td><span class="badge badge-pill purple " style="font-size: medium;"> pending ... </span></td>

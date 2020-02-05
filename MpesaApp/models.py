@@ -30,3 +30,13 @@ class LNMOnline(models.Model):
     PhoneNumber = models.CharField(blank = True,null = True, max_length = 15)
     paid = models.BooleanField(default = False)
 # Create your models here. 
+
+class B2cTransaction(models.Model):
+    TransactionID  = models.CharField(max_length=50, blank= True, null = True)
+    TransactionAmount = models.FloatField(default=0.0)
+    B2CWorkingAccountAvailableFunds = models.FloatField(default= 0.0)
+    B2CUtilityAccountAvailableFunds = models.FloatField(default= 0.0)
+    TransactionCompletedDateTime = models.DateTimeField( blank= True, null = True)
+    ReceiverPartyPublicName = models.CharField(max_length=50, blank= True, null = True)
+    B2CChargesPaidAccountAvailableFunds = models.FloatField(default=  0.0)
+    B2CRecipientIsRegisteredCustomer = models.CharField(max_length=50, blank= True, null = True)

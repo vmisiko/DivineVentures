@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LNMOnline,C2bTransaction
+from .models import LNMOnline,C2bTransaction, B2cTransaction
 from django.contrib import messages
 
 # Register your models here.
@@ -24,3 +24,14 @@ class C2bTransactionAdmin(admin.ModelAdmin):
                     "MSISDN"
                  ]
 admin.site.register( C2bTransaction , C2bTransactionAdmin)
+
+class B2cTransactionAdmin(admin.ModelAdmin):
+    list_display = [
+        "TransactionID",
+        "TransactionAmount",
+        "B2CWorkingAccountAvailableFunds",
+        "TransactionCompletedDateTime",
+        "ReceiverPartyPublicName",
+    ]
+
+admin.site.register( B2cTransaction , B2cTransactionAdmin)

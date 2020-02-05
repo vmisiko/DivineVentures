@@ -21,6 +21,7 @@ def save_profile(sender, **kwargs):
         label ="SIGNED_UP",
 
     )
+    
     Referral.record_response(request, "SIGNED_UP"  )
 
     
@@ -36,8 +37,10 @@ def payment_notification(sender, **kwargs):
     if ipn.payment_status == 'Completed':
         # payment was successful
         
+        
         profile = Profile.objects.get(user_id = ipn.invoice )
         Referral.record_response(request, "PAID"  )
 
         profile.paid = True
         profile.save()
+

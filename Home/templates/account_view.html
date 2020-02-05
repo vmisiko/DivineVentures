@@ -768,6 +768,7 @@
             <!--Main layout-->
   
 {% block scripts %}      
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
 
  <script>
       function myFunction() {
@@ -779,8 +780,7 @@
       }
       </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
-  <script>
+<script>
    //websockets
    loc =window.location
   //  console.log(loc)
@@ -791,9 +791,9 @@
    }
 
    var endpoint = wstart + loc.host + loc.pathname
-   var socket = new ReconnectWebSocket(endpoint)
+   var socket = new ReconnectingWebSocket(endpoint)
 
-   socket.onmessage = function(e){c
+   socket.onmessage = function(e){
      console.log("message" ,e)
      var message = JSON.parse(e.data)
      var audio = new Audio("{% static 'when.mp3'%}")

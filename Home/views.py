@@ -22,6 +22,9 @@ from paypal.standard.forms import PayPalPaymentsForm
 
 # Create your views here.
 
+def example(request):
+    
+    return render(request, 'sucess.html' ,{})
 
 class Homepage(generic.ListView):
     
@@ -116,32 +119,37 @@ def payment_canceled(request):
 
 
 def view_paypal(request):
-    7
-    order = Profile.objects.get(user = request.user,  paid = False)
-
-    print(order.user_id, "this is the cool order number")
-    host = request.get_host()
     
-    # What you want the button to do.
-    paypal_dict = {
-        "business": "misikovictor123@gmail.com",
-        "amount": "5",
-        "item_name":'Order for  {}'.format(order.user),
-        "invoice": str(order.user_id),
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return": request.build_absolute_uri(reverse('Home:payment-done')),
-        "cancel_return": request.build_absolute_uri(reverse('Home:payment-cancelled')),
-        "custom": request.user,  # Custom command to correlate to some function later (optional)
-    }
+    order = Profile.objects.filter(user = request.user,  paid = False)
 
-    # Create the instance.
-    form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {"form": form,
-                "order":  order
-    }
+    if order:
+        print(order.user_id, "this is the cool order number")
+        host = request.get_host()
+        
+        # What you want the button to do.
+        paypal_dict = {
+            "business": "misikovictor123@gmail.com",
+            "amount": "5",
+            "item_name":'Order for  {}'.format(order.user),
+            "invoice": str(order.user_id),
+            "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+            "return": request.build_absolute_uri(reverse('Home:payment-done')),
+            "cancel_return": request.build_absolute_uri(reverse('Home:payment-cancelled')),
+            "custom": request.user,  # Custom command to correlate to some function later (optional)
+        }
 
-    
-    return render(request, "payment.html", context)
+        # Create the instance.
+        form = PayPalPaymentsForm(initial=paypal_dict)
+        context = {"form": form,
+                    "order":  order
+        }
+
+        
+        return render(request, "payment.html", context)
+
+
+    else:
+        return render(request, 'alreadypaid.html' ,{})
 
 class WithdrawalView(generic.ListView):
     model = Profile
@@ -185,9 +193,8 @@ def validate_widthrawal(request):
         last = profile.referrals_paid
         current = profile.referred - profile.referrals_paid
 
-
-
-
+        dp = 1 + 0.01*int(amount)
+        amount_dispensed = amount - dp
 
         payout = WithdrawPayouts(
             user = request.user,
@@ -195,15 +202,25 @@ def validate_widthrawal(request):
             last_name= last_name,
             phone_number= phone_number,
             email = email,
-            amount = amount,
+            amount_request = amount,
+            amount_dispensed = amount_dispensed,
             referrals = current ,
             payment_mode= "Mpesa"
         )
-        payout.save()
 
+        payout.save()
         profile.referrals_paid = last + current
         profile.amount = 0
         profile.save()
+
+        span = 0.01*int(amount)
+        data["percentage"] = "2"
+        data['span'] = span
+        data['gross'] = amount
+        data["tcharges"]= dp
+        data["net"] = amount_dispensed
+
+        print(span, amount, dp, amount_dispensed, "this ire they")
        
         # messages.warning(request, " The form is not valid ")
         data["message"] =  "Withdrawal successful, your money is pending awaiting release"
@@ -231,7 +248,8 @@ def validate_Paypal_widthrawal(request):
 
 
 
-
+        dp = 1 + 0.02*int(amount)
+        amount_dispensed = amount - dp
 
         payout = WithdrawPayouts(
             user = request.user,
@@ -239,7 +257,8 @@ def validate_Paypal_widthrawal(request):
             last_name= last_name,
             phone_number= phone_number,
             email = email,
-            amount = amount,
+            amount_request = amount,
+            amount_dispensed = amount_dispensed,
             referrals = current ,
             payment_mode= "Paypal"
         )
@@ -248,7 +267,15 @@ def validate_Paypal_widthrawal(request):
         profile.referrals_paid = last + current
         profile.amount = 0
         profile.save()
-       
+
+        span = 0.02*int(amount)
+
+        data["percentage"] = "2"
+        data['span'] = span
+        data['gross'] = amount
+        data["tcharges"]= dp
+        data["net"] = amount_dispensed
+        
         # messages.warning(request, " The form is not valid ")
         data["message"] =  "Withdrawal successful, your money is pending awaiting release"
         return JsonResponse(data)

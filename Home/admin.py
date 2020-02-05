@@ -4,11 +4,9 @@ import random
 import string
 from . payout import paypal_payout_release
 from django.contrib import messages
+from .tasks import mpesa_payout_task,paypal_payout_task
 
-sender_batch_id =''.join(
-    random.choice(string.ascii_uppercase) for i in range(12)
-        
-    )
+
 
 
 
@@ -19,60 +17,37 @@ class UserProfile(admin.ModelAdmin):
 
 admin.site.register(Profile, UserProfile)
 
-# class LNMOnlineAdmin(admin.ModelAdmin):
-#     list_display = ["Amount",
-#                     "MpesaReceiptNumber",
-#                     "TranscationDate",
-#                     "PhoneNumber",
-#                     "paid"
-#                  ]
-
-# admin.site.register(LNMOnline,LNMOnlineAdmin)
 
 class WithdrawPayoutsAdmin(admin.ModelAdmin):
-    list_display = ["user", "first_name" ,"phone_number","amount","date","payment_mode","status",]
-    actions = ["apply_payout", "apply_Mpesa_payout"]
+    list_display = ["user", "first_name" ,"phone_number","amount_request","amount_dispensed","date","payment_mode","status",]
+    actions = ["apply_payout", "mpesa_payout"]
 
     def apply_payout(self, request, queryset):
-        qs = queryset.filter(payment_mode = "Paypal" ,status = False)
-        items = [ ]
-       
-        for q in qs:       
-            payout = {
-                "recipient_type": "EMAIL",
-                "amount": {
-                    "value": q.amount,
-                    "currency": "USD"
-                },
-                "receiver": q.email,
-                "note": "congratulations and thank you for working with Divine ventures, keep up the spirit.",
-                "sender_item_id": sender_batch_id,
-            }
-            items.append(payout)
-        qs.update(status = True)
+        pk_model = []
+        for q in queryset:
+            pk_model.append(q.pk)
+        print(pk_model)
+        # mpesa_payout_task.delay(pk_model)
+        try:  
+            paypal_payout_task.delay(pk_model)
+            self.message_user(request, "Please wait this may take a while. Refresh after some few minutes")
+        except:
+            self.message_user(request, "Failed! Retry again")
+
+    apply_payout.short_description = "Apply Paypal Payout"
+
+    def mpesa_payout(self, request, queryset):
         
+        pk_model = []
+        for q in queryset:
+            pk_model.append(q.pk)
+        print(pk_model)
+        # mpesa_payout_task.delay(pk_model)
+        try:  
+            mpesa_payout_task.delay(pk_model)
+            self.message_user(request, "Please wait this may take a while. Refresh after some few minutes")
+        except:
+            self.message_user(request, "Failed! Retry again")
+    mpesa_payout.short_description = "Apply Mpesa Payout"
 
-        # print(items)
-        paypal_payout_release(items)
-        messages.info(request, "Paypal payment is in process, you will receive notification when it has completed successfully")
-    apply_payout.short_description = "Apply payout for paypal"
-
-#     def apply_Mpesa_payout(self, request, queryset):
-
-#         qs = queryset.filter(payment_mode = "Mpesa" )
-#         print(len(qs), "is the number of mpesa users")
-
-#         messages.warning(request, "Mpesa payout not yet implemented" )
-    
-#     apply_Mpesa_payout.short_description = " Apply payout for Mpesa"
-
-# admin.site.register(WithdrawPayouts,WithdrawPayoutsAdmin )
-
-# class C2bTransactionAdmin(admin.ModelAdmin):
-#     list_display = ["TransID",
-#                     "TransTime",
-#                     "TransAmount",
-#                     "OrgAccountBalance",
-#                     "MSISDN"
-#                  ]
-# admin.site.register( C2bTransaction , C2bTransactionAdmin)
+admin.site.register(WithdrawPayouts, WithdrawPayoutsAdmin)

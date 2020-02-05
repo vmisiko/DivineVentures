@@ -19,24 +19,24 @@
   <body>
         {% block content %}
 
-        <h1 class=" pt-5 pb-5 mt-5 mx-5">   payment Done </h1>
-        <div style = "margin:auto" class = "payment_successful">
+        <div style = "margin:auto" class = "card">
+        <h1 class="card-title pt-5  mt-5 mx-5 text-center">   Payment Info </h1>
+        
 
           <hr class="">
           <div class = "d-flex mx-auto justify-content-center">
               
-            <li class=" text-center">
+                <li class=" text-center">
+                    <i class="fas fa-check-circle fa-5x" style="color:rgb(17, 245, 9)" ></i>  Payment Already done
               
-                <i class="fas fa-check-circle fa-5x" style="color:rgba(55, 0, 255, 0.911);" ></i>  Payment successful
-          
-            </li>
-                  
+                   
+                </li>
+                      
 
-      </div>
+          </div>
           <div class= "text-center">
-              <P class = "pt-3 px-3"> Thank you for working with Divine Ventures. A world of Opportunities is 
-                awaiting you {{ request.user }}. You can now start earning from your referrals infinetly without 
-                paying a single dime, from now hence fourth.
+              <P class = "pt-3 px-3"> Thank you for working with Divine Ventures, {{request.user}}. We wish to inform you that you had already paid your 
+                  one time subscription fee, and there is no need for any further payment. 
               </P>
               <p>
                 regards, 

@@ -12,5 +12,6 @@ urlpatterns = [
     path('validate_stk_code/', views.validate_mpesa_code, name = 'validate_mpesa_code'),
     path('lnm/', views.LNMCallbackUrl.as_view(), name = 'lnm-callbackurl'), 
     path('c2b_callback/', views.C2bCallbackUrl.as_view(), name = 'c2b-callbackurl'),
+    path('b2c_callback/', views.B2cCallbackUrl.as_view(), name = 'b2c-callbackurl'),
 ]
 
