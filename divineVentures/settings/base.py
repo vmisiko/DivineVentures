@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     "Home",
     "channels",
     "pinax.referrals",
@@ -52,7 +53,8 @@ INSTALLED_APPS = [
     "Payouts",
     "rest_framework",
     "MpesaApp",
-    
+
+
 
 ]
 
@@ -109,17 +111,21 @@ ASGI_APPLICATION = "divineVentures.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASES = {
-    'default': {                                                                                                                'ENGINE': 'django.db.backends.postgresql_psycopg2',                                                                     'NAME':'divine_db',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',                                                                     'NAME':'divine_db',
-        'NAME':'divine_db',
-        'USER':'vmisiko', 
-        'PASSWORD':'vmisiko1', 
-        'HOST':'localhost'                                                                                                 'HOST':'localhost',
-        'PORT':'',   
-    }
-}                                                                                                                      
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
+
+DATABASES = {'default': {}}
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -170,14 +176,13 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = "/static/"
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
+STATIC_ROOT = os.path.join(BASE_DIR, "static-cdn-local")
 
 # STATICFILES_STORAGE = 'whitenoise.django.CompressedManifestStaticFilesStorage'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
-STATIC_ROOT = os.path.join(BASE_DIR, "static-cdn-local")
 
 
-EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
 
 # paypal settings
 PAYPAL_RECEIVER_EMAIL = 'misikovictor123@gmail.com'
@@ -188,20 +193,20 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("localhost", 6379)],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }
 
-CORS_REPLACE_HTTPS_REFERER      = False
-HOST_SCHEME                     = "http://"
-SECURE_PROXY_SSL_HEADER         = None
-SECURE_SSL_REDIRECT             = False
-SESSION_COOKIE_SECURE           = False
-CSRF_COOKIE_SECURE              = False
-SECURE_HSTS_SECONDS             = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-SECURE_FRAME_DENY               = False
+CORS_REPLACE_HTTPS_REFERER      = True
+HOST_SCHEME                     = "https://"
+SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT             = True
+SESSION_COOKIE_SECURE           = True
+CSRF_COOKIE_SECURE              = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+SECURE_HSTS_SECONDS             = 1000000
+SECURE_FRAME_DENY               = True
 
 os.environ.setdefault('FORKED_BY_MULTIPROCESSING', '1')
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
@@ -209,3 +214,10 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+
+# EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'victormisiko.vm@gmail.com'
+EMAIL_HOST_PASSWORD = 'halleluhya'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
