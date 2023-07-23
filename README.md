@@ -1,2 +1,2 @@
 # DivineVentures
-A Django website for earning points with referrals.
+A Django investment platform that has referrals based systems that allows user to earn from their referrals based on their investment package.
